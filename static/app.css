@@ -1,0 +1,89 @@
+html {
+    font-family: monospace;
+}
+body {
+    background-color: rgb(40, 40, 40);
+    padding: 0;
+    margin: 0;
+}
+p {
+    border-radius: 5px;
+    background-color: rgb(20, 20, 20);
+    color: white;
+    font-size: 2em;
+}
+button {
+    padding: 0.5em;
+    width: 5em;
+    border-style: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(100, 100, 200);
+    font-size: 2em;
+    color: white;
+}
+#start-button {
+    background-color: lightgreen;
+}
+.parent-box{
+    /* background-color: blue; */
+    margin: 40px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    list-style-type: none;
+}
+.statistics {
+    margin: 0px;
+    padding:  0px 40px;
+    background-color: rgb(20, 20, 20);
+    overflow: hidden;
+}
+.grid {
+    /* background-color: red; */
+    width: 600px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+    grid-auto-flow: column;
+}
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(20, 20, 20);
+    font-size: 2em;
+}
+.form-box{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#form-value {
+    border-style: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    width: 6em;
+    font-size: 2em;
+}
+.messages {
+    margin: 2em;
+    min-width: 500px;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.messages .success{
+    background-color: rgb(100, 150, 100);
+}
+.messages .failure{
+    background-color: rgb(150, 100, 100);
+}

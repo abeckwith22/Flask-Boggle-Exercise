@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="statistics">
+        <p id="game-score">Score: 0</p>
+        <p id="timer">Time: </p>
+    </div>
+
+    <div class="parent-box">
+        <div class="grid">
+            {% for blocks in board %}
+                {% for letter in blocks %}
+                    <li class="letter">{{letter}}</li>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-box">
+        <form class="form">
+            <input id="form-value" type="text" placeholder="Input Guess">
+            <button id="submit-button">Submit</button>
+        </form>
+        <button id="start-button">Start</button>
+    </div>
+
+    <div class="messages">
+    </div>
+{% endblock %}
