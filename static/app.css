@@ -81,9 +81,9 @@ button {
     justify-content: center;
     align-items: center;
 }
-.messages .success{
+.success{
     background-color: rgb(100, 150, 100);
 }
-.messages .failure{
+.failure{
     background-color: rgb(150, 100, 100);
 }

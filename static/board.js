@@ -37,27 +37,27 @@ function sendMessage(result, personalMessage="", classname='notification'){ // c
 
     if (result == 'PM'){
         message.append(personalMessage);
-        messagesDiv.classList.toggle(classname);
+        messagesDiv.classList = `messages ${classname}`;
         messagesDiv.append(message);
         return;
     }
 
     if (result == 'ok'){
         message.append('Word is on board, that\'s a point!');
-        messagesDiv.classList.toggle('success');
+        messagesDiv.classList = 'messages success';
     }
     else if (result == 'not-word'){
         message.append('Word is on board, but it\'s not a word.');
-        messagesDiv.classList.toggle('notification');
+        messagesDiv.classList = 'messages notification';
     }
     else if(result == 'already-submitted'){
         message.append('Word is on board, but you already submitted it.');
-        messagesDiv.classList.toggle('failure');
+        messagesDiv.classList = 'messages failure';
     }
     // result == 'not-on-board'
     else{
         message.append('Word is not on board.');
-        messagesDiv.classList.toggle('failure');
+        messagesDiv.classList = 'messages failure';
     }
     messagesDiv.append(message);
 
@@ -71,7 +71,7 @@ form.addEventListener('submit', async function checkWord(event){
         value = document.querySelector('#form-value').value;
         if (value.trim() == ''){
             console.log("You can't submit nothing!");
-            sendMessage("PM", "You can't submit nothing!", 'failure')
+            sendMessage("PM", "You can't submit nothing!", 'failure');
         }
         else{
             const result = await axios.get(`/post/${value}`);
@@ -94,5 +94,5 @@ function startGame(){
     startTimer(time);
     started = true
     console.log('TIMER HAS STARTED!');
-    removeEventListener('click', startGame); // stops board from being pressed again, and timer getting all weird...
+    startButton.removeEventListener('click', startGame); // stops board from being pressed again, and timer getting all weird...
 }
