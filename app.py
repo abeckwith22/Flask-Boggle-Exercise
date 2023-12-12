@@ -17,17 +17,22 @@ def getWordLength(word):
 """ Writing web routes here """
 @app.route('/')
 def show_home():
-    """Display homepage"""
+    """Display board"""
     session['board'] = create_board()
     session['submitted_words'] = [] # used to check for duplicates
-    session['score'] = 0
-    board = session['board']
-    return render_template('home.html', board=board)
+    highscore = session.get('highscore', 0)
+    nplays = session.get('nplays', 0)
 
-@app.route('/post/<formValue>/', methods=['GET'])
-def validate_word(formValue):
+    
+    session['score'] = 0
+
+    board = session['board']
+    return render_template('home.html', board=board, highscore=highscore, nplays=nplays)
+
+@app.route('/validate-word', methods=['POST'])
+def validate_word():
     """ checks if word exists in boggle board array, then checks if result is already submitted """
-    formValue = formValue.lower()
+    formValue = request.json['word'].lower()
 
     board = session['board']
     submitted_words = session['submitted_words']
@@ -47,3 +52,19 @@ def validate_word(formValue):
         session['submitted_words'] = submitted_words 
 
         return jsonify(valid_word=result, game_score=score)
+
+@app.route('/post_score', methods=['POST'])
+def post_score():
+    
+    score = request.json['score']
+    highscore = session.get('highscore', 0)
+    nplays = session.get('nplays', 0)
+
+    print("SCORE:", score)
+    print("HIGHSCORE:", highscore)
+    print("NUMBER PLAYS:", nplays)
+    session['nplays'] = nplays + 1
+    if (score > highscore):
+        session['highscore'] = score
+    
+    return jsonify(score > highscore)

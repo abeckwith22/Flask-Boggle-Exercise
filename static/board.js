@@ -8,8 +8,9 @@ let started = false;
 let time = 60; // seconds
 let score = 0; // points
 
-function updateGameScore(score){
-    scoreElement.innerText = `Score: ${score}`;
+function updateGameScore(Score){
+    scoreElement.innerText = `Score: ${Score}`;
+    score = Score;
 }
 
 function updateTimer(second){
@@ -23,6 +24,7 @@ function startTimer(seconds){ // timer function I stole from a previous exercise
             clearInterval(timer);
             sendMessage('PM', `Game is over, you scored ${scoreElement.innerText}!`);
             started = false // stops player from being able to click submit button
+            scoreGame();
         }
         else{
             console.log(seconds);
@@ -74,7 +76,7 @@ form.addEventListener('submit', async function checkWord(event){
             sendMessage("PM", "You can't submit nothing!", 'failure');
         }
         else{
-            const result = await axios.get(`/post/${value}`);
+            const result = await axios.post('/validate-word', {word : value});
             const isValidWord = result.data.valid_word;
             const score = result.data.game_score;
             if (score != undefined){
@@ -95,4 +97,9 @@ function startGame(){
     started = true
     console.log('TIMER HAS STARTED!');
     startButton.removeEventListener('click', startGame); // stops board from being pressed again, and timer getting all weird...
+}
+
+async function scoreGame() {
+    const resp = await axios.post('/post_score', { score : score });
+    print(resp);
 }
