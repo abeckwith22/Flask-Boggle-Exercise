@@ -9,6 +9,7 @@ app.secret_key = "2jasdfij239j0asdf_jwkefjsecretkeylol"
 
 """ logical functions """
 def create_board():
+    """Creates boggle game board with specified n*n size"""
     return boggle_game.make_board(5)
 
 def getWordLength(word):
